@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar"
 import HeroNew from "@/components/hero-new"
 import AboutNew from "@/components/about-new"
 import ProjectsSection from "@/components/projects-section"
+import Work from "@/components/work"
 import Footer from "@/components/footer"
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
       <HeroNew />
       <AboutNew />
       <ProjectsSection />
+      {/* <Work/> */}
       <Footer />
     </main>
   )

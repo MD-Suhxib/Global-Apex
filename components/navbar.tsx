@@ -1,10 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +36,9 @@ export default function Navbar() {
     }
   }
 
+  // Check if we're on the home page for smooth scroll behavior
+  const isHomePage = pathname === "/"
+
   return (
     <nav 
       className={`bg-primary/5 border-b border-border fixed top-0 left-0 right-0 z-50 py-4 transition-transform duration-300 ${
@@ -43,47 +49,87 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div className="text-2xl font-bold tracking-wider">
-            <span className="text-foreground">Global</span>
-            <span className="text-foreground brightness-125 contrast-125">.Apex</span>
+            <Link href="/">
+              <span className="text-foreground">Global</span>
+              <span className="text-foreground brightness-125 contrast-125">.Apex</span>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-12 items-center">
-            <a
-              href="#home"
-              onClick={(e) => handleSmoothScroll(e, "#home")}
-              className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
-            >
-              HOME
-            </a>
-            <a 
-              href="#about" 
-              onClick={(e) => handleSmoothScroll(e, "#about")}
-              className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
-            >
-              ABOUT US
-            </a>
-            <a
-              href="#projects"
-              onClick={(e) => handleSmoothScroll(e, "#projects")}
-              className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
-            >
-              PRODUCTS
-            </a>
-            <a
-              href="#gallery"
-              onClick={(e) => handleSmoothScroll(e, "#gallery")}
-              className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
-            >
-              WORK
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => handleSmoothScroll(e, "#contact")}
-              className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
-            >
-              CONTACTS
-            </a>
+            {isHomePage ? (
+              // On home page - use smooth scroll
+              <>
+                <a
+                  href="#home"
+                  onClick={(e) => handleSmoothScroll(e, "#home")}
+                  className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
+                >
+                  HOME
+                </a>
+                <a 
+                  href="#about" 
+                  onClick={(e) => handleSmoothScroll(e, "#about")}
+                  className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
+                >
+                  ABOUT US
+                </a>
+                <a
+                  href="#projects"
+                  onClick={(e) => handleSmoothScroll(e, "#projects")}
+                  className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
+                >
+                  PRODUCTS
+                </a>
+                <Link
+                  href="/work"
+                  className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
+                >
+                  WORK
+                </Link>
+                <a
+                  href="#work"
+                  onClick={(e) => handleSmoothScroll(e, "#work")}
+                  className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
+                >
+                  CONTACTS
+                </a>
+              </>
+            ) : (
+              // On other pages - use regular navigation
+              <>
+                <Link
+                  href="/"
+                  className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
+                >
+                  HOME
+                </Link>
+                <Link
+                  href="/#about"
+                  className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
+                >
+                  ABOUT US
+                </Link>
+                <Link
+                  href="/#projects"
+                  className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
+                >
+                  PRODUCTS
+                </Link>
+                <Link
+                  href="/work"
+                  className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
+                >
+                  WORK
+                </Link>
+                <Link
+                  href="/#work"
+                  className="text-xs tracking-widest text-foreground brightness-110 hover:text-accent transition uppercase"
+                >
+                  CONTACTS
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Contact */}

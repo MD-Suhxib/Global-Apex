@@ -1,52 +1,84 @@
 "use client"
 
-import { Gem, Truck, Wrench, Award } from "lucide-react"
+import { motion } from "framer-motion"
+import Image from "next/image"
 
-export default function Services() {
-  const services = [
+export default function Work() {
+  const steps = [
     {
-      id: 1,
-      icon: Gem,
-      title: "Premium Selection",
-      description: "Curated collection of the finest granite and marble from leading suppliers worldwide",
+      step: "Step 1",
+      title: "Browse Our Product Catalog",
+      description:
+        "Explore our comprehensive product range including premium decorative laminates, plywood products, natural stones, ceramics, and glass products. Browse through detailed specifications and high-quality images to find exactly what you need for your project requirements.",
+      image: "/images/step1.png", // Replace with your actual image path
+      reverse: false,
     },
     {
-      id: 2,
-      icon: Truck,
-      title: "Professional Delivery",
-      description: "Safe and timely delivery with proper handling and installation support",
+      step: "Step 2",
+      title: "Choose What You Want",
+      description:
+        "Select your desired products from our extensive catalog. Compare different options, check technical specifications, and choose the quantities that meet your business needs. Our product experts are available to help you make the right choice for your specific requirements.",
+      image: "/images/step2.png",
+      reverse: true,
     },
     {
-      id: 3,
-      icon: Wrench,
-      title: "Custom Fabrication",
-      description: "Expert cutting, polishing, and finishing to your exact specifications",
-    },
-    {
-      id: 4,
-      icon: Award,
-      title: "Quality Assurance",
-      description: "Rigorous quality checks and lifetime support for peace of mind",
+      step: "Step 3",
+      title: "Place Order via WhatsApp",
+      description:
+        "Contact us directly through WhatsApp with your product selection and quantities. Our team will provide instant quotes, shipping details, and payment options. This convenient ordering process ensures quick communication and seamless transaction handling for international buyers.",
+      image: "/images/step3.png",
+      reverse: false,
     },
   ]
 
   return (
-    <section id="services" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-16 text-primary">Our Professional Services</h2>
+    <section className="min-h-screen bg-gray-50 py-24 px-6 md:px-12 lg:px-20">
+      {/* Heading */}
+      <div className="text-center mb-20">
+        <h1 className="text-5xl md:text-6xl font-bold">
+          How it{" "}
+          <span className="bg-gradient-to-r from-purple-600 to-cyan-400 bg-clip-text text-transparent">
+            Works
+          </span>
+        </h1>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {services.map((service) => {
-            const Icon = service.icon
-            return (
-              <div key={service.id} className="bg-white rounded-lg p-8 shadow-md hover:shadow-lg transition-shadow">
-                <Icon className="w-12 h-12 text-accent mb-4" />
-                <h3 className="text-xl font-bold text-primary mb-3">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </div>
-            )
-          })}
-        </div>
+      {/* Steps */}
+      <div className="space-y-28">
+        {steps.map((step, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className={`flex flex-col ${
+              step.reverse ? "md:flex-row-reverse" : "md:flex-row"
+            } items-center gap-12`}
+          >
+            {/* Image */}
+            <div className="flex-1 bg-white rounded-[2rem] shadow-2xl p-10 flex justify-center items-center">
+              <Image
+                src={step.image}
+                alt={step.title}
+                width={500}
+                height={400}
+                className="rounded-2xl"
+              />
+            </div>
+
+            {/* Text */}
+            <div className="flex-1">
+              <span className="bg-purple-600 text-white text-sm font-semibold px-4 py-1 rounded mb-4 inline-block">
+                {step.step}
+              </span>
+              <h2 className="text-4xl font-bold mb-4">{step.title}</h2>
+              <p className="text-gray-500 leading-relaxed text-lg">
+                {step.description}
+              </p>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   )
