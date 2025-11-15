@@ -61,7 +61,7 @@ export default function HeroNew() {
   }
 
   return (
-    <div className="relative min-h-screen bg-background overflow-hidden flex">
+    <div className="relative min-h-screen bg-background overflow-hidden flex pt-16">
       {/* Left Sidebar - Hidden on mobile */}
       <div
         className={`hidden lg:flex w-1/3 bg-gradient-to-b from-primary/20 to-transparent flex-col justify-between p-8 xl:p-12 transition-all duration-1000 ${

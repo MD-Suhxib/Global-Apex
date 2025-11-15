@@ -1,10 +1,10 @@
 "use client"
 
-import { useRouter } from "next/navigation" // Add this import
-import { motion } from "framer-motion" // Add this import
+import { useRouter } from "next/navigation"
+import { motion } from "framer-motion"
 
 export default function ProjectsSection() {
-  const router = useRouter() // Add this hook
+  const router = useRouter()
 
   const projects = [
     {
@@ -19,26 +19,26 @@ export default function ProjectsSection() {
       title: "Granite Raw Blocks",
       category: "COMMERCIAL",
       image: "/raw blocks.jpg",
-      link: "/gallery" // Add link to all projects
+      link: "/gallery"
     },
     {
       id: 3,
       title: "Grand Marble Slabs",
       category: "COMMERCIAL",
       image: "/marble2.jpg",
-      link: "/gallery" // Add link to all projects
+      link: "/gallery"
     },
     {
       id: 4,
       title: "Luxury Stone Decors",
       category: "RESIDENTIAL",
       image: "/luxury-marble-granite-penthouse-interior.jpg",
-      link: "/gallery" // Add link to all projects
+      link: "/gallery"
     },
   ]
 
-  // Add this function to handle navigation
-  const handleProjectClick = (link) => {
+  // Add type annotation to the link parameter
+  const handleProjectClick = (link: string) => {
     router.push(link)
   }
 
@@ -67,12 +67,12 @@ export default function ProjectsSection() {
         <div className="max-w-full px-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
             {projects.map((project) => (
-              <motion.div // Change from div to motion.div
+              <motion.div 
                 key={project.id} 
                 className="group relative h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[500px] overflow-hidden cursor-pointer"
-                whileHover={{ scale: 1.02 }} // Add hover animation
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.4 }}
-                onClick={() => handleProjectClick(project.link)} // Add click handler
+                onClick={() => handleProjectClick(project.link)}
               >
                 {/* Project Image */}
                 <img
@@ -108,7 +108,7 @@ export default function ProjectsSection() {
                 {/* Hover overlay with additional info - Desktop only */}
                 <div className="hidden lg:flex absolute inset-0 items-end justify-start p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-white/80 text-sm mb-2">View Gallery</p> {/* Updated text */}
+                    <p className="text-white/80 text-sm mb-2">View Gallery</p>
                     <div className="w-8 h-px bg-[#c5a47e]"></div>
                   </div>
                 </div>
