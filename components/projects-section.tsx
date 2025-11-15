@@ -19,14 +19,14 @@ export default function ProjectsSection() {
       title: "Granite Raw Blocks",
       category: "COMMERCIAL",
       image: "/raw blocks.jpg",
-      link: "/gallery"
+      link: "/gallery02"
     },
     {
       id: 3,
       title: "Grand Marble Slabs",
       category: "COMMERCIAL",
       image: "/marble2.jpg",
-      link: "/gallery"
+      link: "/gallery03"
     },
     {
       id: 4,

@@ -18,27 +18,36 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null)
 
   const graniteImages: GalleryImage[] = [
-    { id: 1, name: "Black Galaxy Granite", type: "Granite", image: "/granite-black-galaxy.jpg" },
-    { id: 2, name: "White Sparkle Granite", type: "Granite", image: "/granite-white-sparkle.jpg" },
-    { id: 3, name: "Red Dragon Granite", type: "Granite", image: "/granite-red-dragon.jpg" },
-    { id: 4, name: "Baltic Brown Granite", type: "Granite", image: "/granite-baltic-brown.jpg" },
-    { id: 5, name: "Tan Brown Granite", type: "Granite", image: "/granite-tan-brown.jpg" },
-    { id: 6, name: "Absolute Black Granite", type: "Granite", image: "/granite-absolute-black.jpg" },
-  ]
-
-  const marbleImages: GalleryImage[] = [
-    { id: 7, name: "Calacatta Marble", type: "Marble", image: "/marble-calacatta.jpg" },
-    { id: 8, name: "Statuario Marble", type: "Marble", image: "/marble-statuario.jpg" },
-    { id: 9, name: "Emperador Dark Marble", type: "Marble", image: "/marble-emperador.jpg" },
-    { id: 10, name: "Crema Marfil Marble", type: "Marble", image: "/marble-crema-marfil.jpg" },
-    { id: 11, name: "Black and Gold Marble", type: "Marble", image: "/marble-black-gold.jpg" },
-    { id: 12, name: "Portoro Marble", type: "Marble", image: "/marble-portoro.jpg" },
+    { id: 1, name: "Black Galaxy", type: "Granite", image: "/Black-Galaxy.jpg" },
+    { id: 2, name: "Viscon White", type: "Granite", image: "/Viscon White.jpg" },
+    { id: 3, name: "Black Forest", type: "Granite", image: "/Black Forest.jpg" },
+    { id: 4, name: "Sira Grey", type: "Granite", image: "/Sira-Grey.webp" },
+    { id: 5, name: "Steel Grey", type: "Granite", image: "/Steel G.jpg" },
+    { id: 6, name: "Tan Brown", type: "Granite", image: "/tan-brown.jpg" },
+    { id: 7, name: "Absolute Black", type: "Granite", image: "/Absolute-black.jpg" },
+    { id: 8, name: "Kashmir White", type: "Granite", image: "/kashmir white.jpg" },
+    { id: 9, name: "Black Pearl", type: "Granite", image: "/black-pearl.jpg" },
+    { id: 10, name: "Hassan Green", type: "Granite", image: "/Hassan Green.jpg" },
+    { id: 11, name: "Ilkal Red", type: "Granite", image: "/ilkal red.jpg" },
+    { id: 12, name: "Lakha Red", type: "Granite", image: "/Lakha-Red.jpg" },
+    { id: 13, name: "Cherry Brown", type: "Granite", image: "/Cherry brown.jpg" },
+    { id: 14, name: "Fish Black", type: "Granite", image: "/FISH B.jpg" },
+    { id: 15, name: "Alaska White", type: "Granite", image: "/Alaska-white.jpg" },
+    { id: 16, name: "Himalayan Blue", type: "Granite", image: "/himalayan b.png" },
+    { id: 17, name: "Paradise Bash", type: "Granite", image: "/paradise bash.jpg" },
+    { id: 18, name: "Red Multy", type: "Granite", image: "/red multy.jpg" },
+    { id: 19, name: "Lavender Blue", type: "Granite", image: "/lavender.jpg" },
+    { id: 20, name: "Imperial Gold", type: "Granite", image: "/imperial g.jpg" },
+    { id: 21, name: "Alaska Gold", type: "Granite", image: "/Alashka Gold.jpg" },
+    { id: 22, name: "Asian Red", type: "Granite", image: "/Asian Red.jpeg" },
+    { id: 23, name: "Adhonic Brown", type: "Granite", image: "/AD brown.jpg" },
+    { id: 24, name: "Moon White", type: "Granite", image: "/Moon White.jpg" },
   ]
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-black text-white py-4 px-6 md:px-12 lg:px-20 sticky top-0 z-50">
+      <header className="bg-black text-black py-4 px-6 md:px-12 lg:px-20 sticky top-0 z-50">
         <div className="flex items-center justify-between">
           <motion.button
             onClick={() => router.back()}
@@ -49,16 +58,15 @@ export default function Gallery() {
             <ChevronLeft size={24} />
             <span className="font-semibold tracking-wide">BACK TO PRODUCTS</span>
           </motion.button>
-          
+
           <div className="text-xl md:text-2xl font-bold tracking-wider">GLOBAL APEX</div>
         </div>
       </header>
 
       <section className="py-12 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Granite Gallery */}
-          <motion.div 
-            className="mb-20"
+          {/* Granite Gallery Only */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -72,7 +80,7 @@ export default function Gallery() {
               </p>
               <div className="w-20 h-1 bg-[#c5a47e] mx-auto mt-6"></div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {graniteImages.map((img, index) => (
                 <motion.div
@@ -84,66 +92,14 @@ export default function Gallery() {
                   whileHover={{ scale: 1.02 }}
                   onClick={() => setSelectedImage(img)}
                 >
-                  <div className="aspect-square relative overflow-hidden">
+                  <div className="aspect-[4/3] relative overflow-hidden">
                     <img
                       src={img.image || "/placeholder.svg"}
                       alt={img.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
-                    
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="bg-black/70 text-white p-4 rounded-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        <ZoomIn size={32} />
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-2">{img.name}</h3>
-                    <p className="text-muted-foreground text-sm uppercase tracking-widest">{img.type}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* Marble Gallery */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground tracking-tight">
-                LUXURIOUS <span className="text-[#c5a47e]">MARBLE</span> COLLECTION
-              </h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Exquisite marble selections for premium projects
-              </p>
-              <div className="w-20 h-1 bg-[#c5a47e] mx-auto mt-6"></div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {marbleImages.map((img, index) => (
-                <motion.div
-                  key={img.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
-                  onClick={() => setSelectedImage(img)}
-                >
-                  <div className="aspect-square relative overflow-hidden">
-                    <img
-                      src={img.image || "/placeholder.svg"}
-                      alt={img.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
-                    
                     {/* Hover overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="bg-black/70 text-white p-4 rounded-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -151,10 +107,10 @@ export default function Gallery() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-2">{img.name}</h3>
-                    <p className="text-muted-foreground text-sm uppercase tracking-widest">{img.type}</p>
+                    <h3 className="text-xl font-bold text-black mb-2">{img.name}</h3>
+                    <p className="text-gray-700 text-sm uppercase tracking-widest">{img.type}</p>
                   </div>
                 </motion.div>
               ))}
