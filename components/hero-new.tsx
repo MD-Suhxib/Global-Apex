@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight, Instagram, Twitter, Facebook } from "lucide-react"
+import { useRouter } from "next/navigation" // Add this import
 
 export default function HeroNew() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [hasLoaded, setHasLoaded] = useState(false)
+  const router = useRouter() // Add this hook
 
   const slides = [
     {
@@ -58,6 +60,11 @@ export default function HeroNew() {
       setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
       setIsTransitioning(false)
     }, 400)
+  }
+
+  // Add this function to handle navigation
+  const handleHowItWorksClick = () => {
+    router.push("/work")
   }
 
   return (
@@ -150,9 +157,12 @@ export default function HeroNew() {
             {slides[currentSlide].description}
           </p>
 
-          {/* LOOK MORE Button */}
-          <button className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-[#c5a47e] text-black text-xs sm:text-sm tracking-[0.2em] font-medium hover:bg-[#b8966d] transition uppercase flex items-center gap-2 sm:gap-3 mx-auto rounded-full">
-            LOOK MORE
+          {/* HOW IT WORKS Button - Updated with onClick handler */}
+          <button 
+            onClick={handleHowItWorksClick}
+            className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-[#c5a47e] text-black text-xs sm:text-sm tracking-[0.2em] font-medium hover:bg-[#b8966d] transition uppercase flex items-center gap-2 sm:gap-3 mx-auto rounded-full"
+          >
+            How it Works
             <ChevronRight size={16} className="sm:w-4 sm:h-4" />
           </button>
         </div>
