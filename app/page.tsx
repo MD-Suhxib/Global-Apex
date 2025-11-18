@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar"
 import HeroNew from "@/components/hero-new"
 import AboutNew from "@/components/about-new"
 import ProjectsSection from "@/components/projects-section"
+import CTA from "@/components/cta" // Add this import
 import Work from "@/components/work"
 import Footer from "@/components/footer"
 
@@ -13,6 +14,7 @@ export default function Home() {
       <HeroNew />
       <AboutNew />
       <ProjectsSection />
+      <CTA /> {/* Add this line - it will appear after Projects and before Footer */}
       {/* <Work/> */}
       <Footer />
     </main>
