@@ -39,7 +39,7 @@ export default function Navbar() {
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault()
-    const element = document.querySelector(targetId)
+    const element = document.getElementById(targetId)
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" })
       setIsMobileMenuOpen(false)
@@ -50,11 +50,11 @@ export default function Navbar() {
   const isHomePage = pathname === "/"
 
   const navLinks = [
-    { name: "HOME", href: "#home", target: "#home" },
-    { name: "ABOUT US", href: "#about", target: "#about" },
-    { name: "PRODUCTS", href: "#projects", target: "#projects" },
+    { name: "HOME", href: "#home", target: "home" },
+    { name: "ABOUT US", href: "#about", target: "about" },
+    { name: "PRODUCTS", href: "#projects", target: "projects" },
     { name: "WORK", href: "/work" },
-    { name: "CONTACTS", href: "#work", target: "#work" },
+    { name: "CONTACTS", href: "#contact", target: "contact" }, // Updated target to "contact"
   ]
 
   return (
@@ -69,7 +69,7 @@ export default function Navbar() {
           <div className="text-xl font-bold tracking-wider">
             <Link href="/" className="flex items-center">
               <span className="text-white">GLOBAL</span>
-              <span className="text-[#c5a47e]">.APEX</span>
+              <span className="text-[#c5a47e]">APEX</span>
             </Link>
           </div>
 
