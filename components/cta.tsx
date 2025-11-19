@@ -4,6 +4,21 @@ import { motion } from "framer-motion"
 import { Phone, Mail, MapPin, MessageCircle, Clock } from "lucide-react"
 
 export default function CTA() {
+  // WhatsApp configuration
+  const whatsappNumber = "918618271718"; // Your number without +
+  const companyName = "Global Apex";
+  
+  // Pre-filled messages
+  const quoteMessage = `Hello ${companyName}! I'm interested in getting a quote for your premium granite and marble products. Please provide more information about pricing and availability.`;
+  
+  const consultationMessage = `Hello ${companyName}! I'd like to schedule a consultation for my project. Please let me know your available time slots.`;
+
+  // Function to open WhatsApp
+  const openWhatsApp = (message: string) => {
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
+
   return (
     <section id="contact" className="py-20 bg-black text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,19 +47,23 @@ export default function CTA() {
           viewport={{ once: true }}
           className="flex flex-col sm:flex-row gap-6 justify-center mb-20"
         >
+          {/* Get Instant Quote Button */}
           <motion.button
+            onClick={() => openWhatsApp(quoteMessage)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-[#c5a47e] text-black px-10 py-5 rounded-full font-semibold text-lg tracking-wider uppercase hover:bg-[#b8966d] transition-all duration-300 flex items-center justify-center gap-3 min-w-[250px]"
+            className="bg-[#c5a47e] text-black px-10 py-5 rounded-full font-semibold text-lg tracking-wider uppercase hover:bg-[#b8966d] transition-all duration-300 flex items-center justify-center gap-3 min-w-[250px] cursor-pointer"
           >
             <MessageCircle size={20} />
             GET INSTANT QUOTE
           </motion.button>
           
+          {/* Schedule Consultation Button */}
           <motion.button
+            onClick={() => openWhatsApp(consultationMessage)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="border-2 border-[#c5a47e] text-[#c5a47e] px-10 py-5 rounded-full font-semibold text-lg tracking-wider uppercase hover:bg-[#c5a47e] hover:text-black transition-all duration-300 flex items-center justify-center gap-3 min-w-[250px]"
+            className="border-2 border-[#c5a47e] text-[#c5a47e] px-10 py-5 rounded-full font-semibold text-lg tracking-wider uppercase hover:bg-[#c5a47e] hover:text-black transition-all duration-300 flex items-center justify-center gap-3 min-w-[250px] cursor-pointer"
           >
             <Clock size={20} />
             SCHEDULE CONSULTATION
@@ -68,6 +87,7 @@ export default function CTA() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="text-center group cursor-pointer"
+              onClick={() => window.location.href = 'mailto:globalapex.exports@gmail.com'}
             >
               <div className="bg-[#c5a47e]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#c5a47e]/20 transition-all duration-300">
                 <Mail className="text-[#c5a47e]" size={24} />
@@ -75,7 +95,9 @@ export default function CTA() {
               <p className="text-sm text-gray-400 mb-2 uppercase tracking-widest">Email</p>
               <p className="text-lg font-semibold group-hover:text-[#c5a47e] transition-colors duration-300">
                 globalapex.exports@gmail.com
-                info@globalapex.com
+              </p>
+              <p className="text-lg font-semibold group-hover:text-[#c5a47e] transition-colors duration-300">
+                info@globalapexs.com
               </p>
             </motion.div>
 
@@ -83,6 +105,7 @@ export default function CTA() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="text-center group cursor-pointer"
+              onClick={() => window.open(`tel:+918618271718`, '_self')}
             >
               <div className="bg-[#c5a47e]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#c5a47e]/20 transition-all duration-300">
                 <Phone className="text-[#c5a47e]" size={24} />
@@ -93,18 +116,20 @@ export default function CTA() {
               </p>
             </motion.div>
 
-            {/* Address */}
+            {/* WhatsApp */}
             <motion.div
               whileHover={{ scale: 1.05 }}
               className="text-center group cursor-pointer"
+              onClick={() => openWhatsApp(`Hello ${companyName}! I would like to know more about your products and services.`)}
             >
               <div className="bg-[#c5a47e]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#c5a47e]/20 transition-all duration-300">
-                <MapPin className="text-[#c5a47e]" size={24} />
+                <MessageCircle className="text-[#c5a47e]" size={24} />
               </div>
-              <p className="text-sm text-gray-400 mb-2 uppercase tracking-widest">Address</p>
+              <p className="text-sm text-gray-400 mb-2 uppercase tracking-widest">WhatsApp</p>
               <p className="text-lg font-semibold group-hover:text-[#c5a47e] transition-colors duration-300">
-                Bangalore, India
+                Chat with Us
               </p>
+              <p className="text-sm text-gray-400 mt-1">Quick Response</p>
             </motion.div>
 
             {/* Business Hours */}
