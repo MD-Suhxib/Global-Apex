@@ -11,6 +11,23 @@ export const metadata: Metadata = {
   title: "Global Apex | Premium Granite & Marble",
   description: "Premium Granite and Marble for luxury construction and interior design.",
   generator: "v0.app",
+  icons: {
+    icon: [
+      // Main favicon
+      { url: "/favicon.ico" },
+      // PNG versions for different sizes
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      // Apple touch icon
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      // Safari pinned tab icon
+      { rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#c5a47e" },
+    ],
+  },
 }
 
 export default function RootLayout({

@@ -20,7 +20,7 @@ export default function Gallery() {
   const graniteImages: GalleryImage[] = [
     { id: 1, name: "Black Galaxy", type: "Granite", image: "/Black-Galaxy.jpg" },
     { id: 2, name: "Viscon White", type: "Granite", image: "/Viscon White.jpg" },
-    { id: 3, name: "Black Forest", type: "Granite", image: "/Black Forest.jpg" },
+    { id: 3, name: "Black Forest", type: "Granite", image: "/black forest.jpg" },
     { id: 4, name: "Sira Grey", type: "Granite", image: "/Sira-Grey.webp" },
     { id: 5, name: "Steel Grey", type: "Granite", image: "/Steel G.jpg" },
     { id: 6, name: "Tan Brown", type: "Granite", image: "/tan-brown.jpg" },
