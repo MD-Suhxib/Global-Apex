@@ -38,6 +38,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
+        {/* Google Search Console Verification */}
+        <meta 
+          name="google-site-verification" 
+          content="PyqurmSvzmctsx50WLzvSLKGR34AppyCnUYgjvQaPZI" 
+        />
+        
         <Script 
           src="https://elfsightcdn.com/platform.js" 
           strategy="lazyOnload"
