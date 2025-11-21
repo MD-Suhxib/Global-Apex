@@ -106,7 +106,7 @@ export default function HeroNew() {
 
         {/* Social Icons */}
         <div className="flex flex-col gap-4 xl:gap-6 text-[#c5a47e]">
-          <a href="#" className="hover:text-[#c5a47e] transition">
+          <a href="https://www.instagram.com/global.apex_?igsh=MWF5d3V4NDkzaDgwaA==" className="hover:text-[#c5a47e] transition">
             <Instagram size={18} />
           </a>
           <a href="#" className="hover:text-[#c5a47e] transition">

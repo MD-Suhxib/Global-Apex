@@ -14,27 +14,29 @@ export default function ProjectsSection() {
       image: "/premium-stone-retail-showroom-display.jpg",
       link: "/gallery"
     },
+    
     {
       id: 2,
-      title: "Granite Raw Blocks",
+      title: "Granite Rough Blocks",
       category: "COMMERCIAL",
       image: "/raw blocks.jpg",
       link: "/gallery02"
     },
-    {
+      {
       id: 3,
+      title: "Luxury Stone Decors",
+      category: "RESIDENTIAL",
+      image: "/luxury-marble-granite-penthouse-interior.jpg",
+      link: "/gallery04"
+    },
+    {
+      id: 4,
       title: "Grand Marble Slabs",
       category: "COMMERCIAL",
       image: "/marble2.jpg",
       link: "/gallery03"
     },
-    {
-      id: 4,
-      title: "Luxury Stone Decors",
-      category: "RESIDENTIAL",
-      image: "/luxury-marble-granite-penthouse-interior.jpg",
-      link: "/gallery"
-    },
+  
   ]
 
   // Add type annotation to the link parameter
