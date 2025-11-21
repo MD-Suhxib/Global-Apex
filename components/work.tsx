@@ -67,6 +67,19 @@ export default function Work() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-black text-white py-4 px-4 sm:px-6 md:px-12 lg:px-20">
+        {/* Go Back Button */}
+        <div className="flex items-center justify-between mb-4">
+          <motion.button
+            onClick={() => window.history.back()}
+            className="flex items-center gap-2 text-[#c5a47e] hover:text-[#b8966d] transition-colors group text-sm"
+            whileHover={{ x: -5 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ChevronRight className="transform rotate-180" size={16} />
+            <span>GO BACK</span>
+          </motion.button>
+        </div>
+
         <div className="flex items-center justify-between">
           <div className="text-lg sm:text-xl md:text-2xl font-bold tracking-wider">GLOBAL APEX</div>
           
