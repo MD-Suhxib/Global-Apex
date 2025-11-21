@@ -44,6 +44,24 @@ export default function RootLayout({
           content="PyqurmSvzmctsx50WLzvSLKGR34AppyCnUYgjvQaPZI" 
         />
         
+        {/* Google Analytics */}
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`} // Replace with your Measurement ID
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BE23N743ZX'); // Replace with your Measurement ID
+            `,
+          }}
+        />
+        
         <Script 
           src="https://elfsightcdn.com/platform.js" 
           strategy="lazyOnload"
