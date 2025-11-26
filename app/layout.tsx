@@ -12,7 +12,10 @@ export const metadata: Metadata = {
   description: "Premium Granite and Marble for luxury construction and interior design.",
   generator: "v0.app",
   verification: {
-    google: "PyqurmSvzmctsx50WLzvSLKGR34AppyCnUYgjvQaPZI", // ✔ Correct location for GSC tag
+    google: "PyqurmSvzmctsx50WLzvSLKGR34AppyCnUYgjvQaPZI",
+  },
+  alternates: {
+    canonical: "https://globalapexs.com/",
   },
   icons: {
     icon: [
@@ -20,12 +23,7 @@ export const metadata: Metadata = {
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
-    other: [
-      { rel: "mask-icon", url: "/safari-pinned-tab.svg", color: "#c5a47e" },
-    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
 }
 
