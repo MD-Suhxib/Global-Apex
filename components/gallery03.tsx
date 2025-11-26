@@ -24,7 +24,7 @@ export default function Gallery03() {
     { id: 3, name: "Emperador Dark Marble", type: "Marble", image: "/Emp-marble.jpg" },
     { id: 4, name: "Crema Marfil Marble", type: "Marble", image: "/Crema Marfil.jpg" },
     { id: 5, name: "Green Marble", type: "Marble", image: "/Green-Marble.jpg" },
-    { id: 6, name: "Marquina Black ", type: "Marble", image: "/Marquina-Black.jpg" },
+    { id: 6, name: "Marquina Black ", type: "Marble", image: "/Marquina-Black01.webp" },
     // { id: 7, name: "Katni Marble ", type: "Marble", image: "/katni.jpg" },
 
   ]

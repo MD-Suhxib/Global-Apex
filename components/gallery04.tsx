@@ -20,11 +20,11 @@ export default function Gallery04() {
   const images: GalleryImage[] = [
     // Add your images for Gallery 4 here
     { id: 1, name: "Counter-Tops", type: "Stone", image: "/Countertop.jpg" },
-    { id: 2, name: "Stone Dining", type: "Stone", image: "/dining.jpg" },
+    { id: 2, name: "Stone Dining", type: "Stone", image: "/dining01.webp" },
     { id: 3, name: "WashBasin", type: "Stone", image: "/washbasin.jpg" },
     { id: 4, name: "Staircase", type: "Stone", image: "/staircase.jpg" },
-    { id: 5, name: "Mirror Frame", type: "Stone", image: "/mirror.jpg" },
-    { id: 6, name: "Marble Vase", type: "Stone", image: "/vase.jpg" },
+    { id: 5, name: "Mirror Frame", type: "Stone", image: "/mirrorup.webp" },
+    { id: 6, name: "Marble Vase", type: "Stone", image: "/vase.webp" },
     // Add more images as needed
   ]
 
