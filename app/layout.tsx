@@ -47,7 +47,7 @@ export default function RootLayout({
         {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`} // Replace with your Measurement ID
+          src={`https://www.googletagmanager.com/gtag/js?id=G-BE23N743ZX`} // Replace with your Measurement ID
         />
         <Script
           id="google-analytics"
