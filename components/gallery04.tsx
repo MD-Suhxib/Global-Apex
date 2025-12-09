@@ -24,7 +24,7 @@ export default function Gallery04() {
     { id: 3, name: "WashBasin", type: "Stone", image: "/washbasin.jpg" },
     { id: 4, name: "Staircase", type: "Stone", image: "/staircase.jpg" },
     { id: 5, name: "Mirror Frame", type: "Stone", image: "/mirrorup.webp" },
-    { id: 6, name: "Marble Vase", type: "Stone", image: "/vase.webp" },
+    { id: 6, name: "Marble Vase", type: "Stone", image: "/Vse02.jpg" },
     // Add more images as needed
   ]
 
