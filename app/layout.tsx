@@ -10,12 +10,9 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700
 export const metadata: Metadata = {
   title: "Global Apex | Premium Granite & Marble",
   description: "Premium Granite and Marble for luxury construction and interior design.",
-  generator: "v0.app",
+  generator: "",
   verification: {
     google: "PyqurmSvzmctsx50WLzvSLKGR34AppyCnUYgjvQaPZI",
-  },
-  alternates: {
-    canonical: "https://globalapexs.com/",
   },
   icons: {
     icon: [
