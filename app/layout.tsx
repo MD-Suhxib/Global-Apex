@@ -10,6 +10,7 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700
 export const metadata: Metadata = {
   title: "Global Apex | Premium Granite & Marble",
   description: "Premium Granite and Marble for luxury construction and interior design.",
+  keywords: ["granite", "marble", "premium stone", "luxury construction", "interior design", "countertops", "slabs"],
   generator: "",
   verification: {
     google: "PyqurmSvzmctsx50WLzvSLKGR34AppyCnUYgjvQaPZI",
@@ -22,6 +23,28 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
+  openGraph: {
+    title: "Global Apex | Premium Granite & Marble",
+    description: "Premium Granite and Marble for luxury construction and interior design.",
+    url: "https://www.globalapexs.com",
+    siteName: "Global Apex",
+    images: [
+      {
+        url: "/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Global Apex Granite and Marble",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Global Apex | Premium Granite & Marble",
+    description: "Premium Granite and Marble for luxury construction and interior design.",
+    images: ["/hero.jpg"],
+  },
 }
 
 export default function RootLayout({
@@ -31,6 +54,28 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="icon" href="/favicon.ico?v=1" />
+        <link rel="shortcut icon" href="/favicon.ico?v=1" />
+        <link rel="icon" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#ffffff" />
+        <link rel="canonical" href="https://globalapexs.com/" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Global Apex",
+              "url": "https://globalapexs.com",
+              "logo": "https://globalapexs.com/placeholder-logo.png"
+            }),
+          }}
+        />
+      </head>
       <body className={`${poppins.className} antialiased`}>
         {children}
 
