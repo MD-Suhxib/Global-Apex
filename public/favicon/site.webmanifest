@@ -1,7 +1,6 @@
 {
-  "name": "Global Apex | Premium Granite & Marble",
-  "short_name": "Global Apex",
-  "description": "Premium Granite and Marble for luxury construction and interior design.",
+  "name": "MyWebSite",
+  "short_name": "MySite",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -18,6 +17,5 @@
   ],
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
-  "display": "standalone",
-  "start_url": "/"
+  "display": "standalone"
 }
