@@ -9,28 +9,19 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700
 
 export const metadata: Metadata = {
   title: "Global Apex | Premium Granite & Marble",
-  description: "Premium Granite and Marble for luxury construction and interior design.",
-  keywords: ["granite", "marble", "premium stone", "luxury construction", "interior design", "countertops", "slabs"],
-  generator: "",
+  description: "Premium Granite slabs, tiles and marble supplied from Karnataka’s best quarries and factories.",
+  keywords: ["granite supplier", "granite slabs", "marble", "stone trader", "Bangalore granite", "Karnataka granite"],
   verification: {
     google: "PyqurmSvzmctsx50WLzvSLKGR34AppyCnUYgjvQaPZI",
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
-  },
   openGraph: {
     title: "Global Apex | Premium Granite & Marble",
-    description: "Premium Granite and Marble for luxury construction and interior design.",
-    url: "https://www.globalapexs.com",
+    description: "Premium Granite slabs, tiles and marble supplied from Karnataka’s best quarries and factories.",
+    url: "https://globalapexs.com",
     siteName: "Global Apex",
     images: [
       {
-        url: "/hero.jpg",
+        url: "https://globalapexs.com/hero.jpg",
         width: 1200,
         height: 630,
         alt: "Global Apex Granite and Marble",
@@ -42,35 +33,32 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Global Apex | Premium Granite & Marble",
-    description: "Premium Granite and Marble for luxury construction and interior design.",
-    images: ["/hero.jpg"],
+    description: "Premium Granite slabs, tiles and marble supplied from Karnataka’s best quarries and factories.",
+    images: ["https://globalapexs.com/hero.jpg"],
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
-        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#ffffff" />
+        {/* Canonical */}
         <link rel="canonical" href="https://globalapexs.com/" />
+
+        {/* Theme */}
+        <meta name="theme-color" content="#0b132b" />
+
+        {/* Organization Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "Global Apex",
-              "url": "https://globalapexs.com",
-              "logo": "https://globalapexs.com/placeholder-logo.png"
+              name: "Global Apex",
+              url: "https://globalapexs.com",
+              logo: "https://globalapexs.com/logo.png",
+              sameAs: [],
             }),
           }}
         />
@@ -94,17 +82,6 @@ export default function RootLayout({
               gtag('config', 'G-BE23N743ZX');
             `,
           }}
-        />
-
-        {/* Elfsight */}
-        <Script
-          src="https://elfsightcdn.com/platform.js"
-          strategy="lazyOnload"
-        />
-
-        <div
-          className="elfsight-app-867d9541-0b11-4cab-b0c4-533541e21e61"
-          data-elfsight-app-lazy
         />
 
         <Analytics />
