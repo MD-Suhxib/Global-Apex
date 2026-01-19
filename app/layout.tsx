@@ -11,8 +11,11 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Global Apex | Premium Granite & Marble",
-  description: "Premium Granite and Marble for luxury construction and interior design.",
+  title: {
+    default: "Global Apex Stone World | Premium Granite & Marble Supplier",
+    template: "%s | Global Apex Stone World",
+  },
+  description: "Premium Granite and Marble for luxury construction and interior design. Import, export & custom stone solutions for architects, builders, and interior designers.",
   keywords: [
     "granite",
     "marble",
@@ -21,31 +24,46 @@ export const metadata: Metadata = {
     "interior design",
     "countertops",
     "slabs",
+    "granite supplier",
+    "marble supplier",
+    "stone import export",
   ],
   verification: {
     google: "PyqurmSvzmctsx50WLzvSLKGR34AppyCnUYgjvQaPZI",
   },
+  metadataBase: new URL("https://www.globalapexs.com"),
   openGraph: {
-    title: "Global Apex | Premium Granite & Marble",
-    description: "Premium Granite and Marble for luxury construction and interior design.",
-    url: "https://globalapexs.com",
-    siteName: "Global Apex",
+    title: "Global Apex Stone World | Premium Granite & Marble Supplier",
+    description: "Premium Granite and Marble for luxury construction and interior design. Import, export & custom stone solutions.",
+    url: "https://www.globalapexs.com",
+    siteName: "Global Apex Stone World",
     images: [
       {
-        url: "https://globalapexs.com/hero.jpg",
+        url: "/hero.jpg",
         width: 1200,
         height: 630,
         alt: "Global Apex Granite and Marble",
       },
     ],
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Global Apex | Premium Granite & Marble",
+    title: "Global Apex Stone World | Premium Granite & Marble Supplier",
     description: "Premium Granite and Marble for luxury construction and interior design.",
-    images: ["https://globalapexs.com/hero.jpg"],
+    images: ["/hero.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 }
 
@@ -53,8 +71,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <head>
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+
         {/* Canonical */}
-        <link rel="canonical" href="https://globalapexs.com/" />
+        <link rel="canonical" href="https://www.globalapexs.com/" />
 
         {/* Theme */}
         <meta name="theme-color" content="#ffffff" />
@@ -66,9 +90,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Global Apex",
-              url: "https://globalapexs.com",
-              logo: "https://globalapexs.com/logo.png",
+              name: "Global Apex Stone World",
+              url: "https://www.globalapexs.com",
+              logo: "https://www.globalapexs.com/logo.png",
+              description: "Premium Granite and Marble supplier for luxury construction and interior design",
+              address: {
+                "@type": "PostalAddress",
+                addressCountry: "IN",
+              },
             }),
           }}
         />

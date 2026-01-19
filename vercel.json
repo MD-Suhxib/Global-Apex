@@ -1,0 +1,15 @@
+{
+    "redirects": [
+        {
+            "source": "/:path*",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "globalapexs.com"
+                }
+            ],
+            "destination": "https://www.globalapexs.com/:path*",
+            "permanent": true
+        }
+    ]
+}
