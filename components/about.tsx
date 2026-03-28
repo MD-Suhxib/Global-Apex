@@ -6,9 +6,8 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold mb-4">About Global Apex</h2>
         <p className="text-lg mb-12 max-w-3xl opacity-90">
-          Global Apex is a leading supplier of premium granite and marble, serving luxury residential and commercial
-          projects. With over 15 years of experience in the stone industry, we pride ourselves on exceptional quality,
-          professional service, and attention to detail.
+          Global Apex is a premier Quarry Owner and leading supplier of premium granite and marble, serving luxury residential and commercial
+          projects. With over 20 years of legacy in the stone industry, we own and operate premium quarries that supply massive quantities of high-grade raw granite blocks.
         </p>
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -17,7 +16,7 @@ export default function About() {
             <p className="text-lg opacity-90">Satisfied Clients</p>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-accent mb-2">15+</div>
+            <div className="text-4xl font-bold text-accent mb-2">20+</div>
             <p className="text-lg opacity-90">Years of Experience</p>
           </div>
           <div className="text-center">

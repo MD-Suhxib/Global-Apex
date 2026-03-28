@@ -14,7 +14,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
-      
+
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down & past 100px
         setIsVisible(false)
@@ -22,7 +22,7 @@ export default function Navbar() {
         // Scrolling up
         setIsVisible(true)
       }
-      
+
       setLastScrollY(currentScrollY)
     }
 
@@ -58,10 +58,9 @@ export default function Navbar() {
   ]
 
   return (
-    <nav 
-      className={`bg-black/80 backdrop-blur-md border-b border-[#c5a47e]/20 fixed top-0 left-0 right-0 z-50 py-3 transition-all duration-300 ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
-      }`}
+    <nav
+      className={`bg-black/80 backdrop-blur-md border-b border-[#c5a47e]/20 fixed top-0 left-0 right-0 z-50 py-3 transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
@@ -109,9 +108,8 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isMobileMenuOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
-        }`}>
+        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
+          }`}>
           <div className="bg-black/90 backdrop-blur-lg rounded-lg border border-[#c5a47e]/20 p-4">
             <div className="flex flex-col space-y-3">
               {navLinks.map((link, index) => (
