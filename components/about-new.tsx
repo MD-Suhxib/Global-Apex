@@ -98,7 +98,7 @@ export default function AboutNew() {
                       GRANITE
                     </h4>
                     <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                      Premium granite sourcing for export, showrooms, countertops,
+                      Premium Granite sourcing for Export, showrooms, countertops,
                       flooring, and luxury applications.
                     </p>
                   </div>
