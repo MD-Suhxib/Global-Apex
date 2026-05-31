@@ -4,8 +4,9 @@ import { motion } from "framer-motion"
 import { Phone, Mail, MapPin, MessageCircle, Clock } from "lucide-react"
 
 export default function CTA() {
-  // WhatsApp configuration
-  const whatsappNumber = "918618271718"; // Your number without +
+  const primaryPhone = "918123409596";
+  const secondaryPhone = "918618271718";
+  const whatsappNumber = primaryPhone;
   const companyName = "Global Apex";
   
   // Pre-filled messages
@@ -104,14 +105,22 @@ export default function CTA() {
             {/* Phone */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="text-center group cursor-pointer"
-              onClick={() => window.open(`tel:+918618271718`, '_self')}
+              className="text-center group"
             >
               <div className="bg-[#c5a47e]/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#c5a47e]/20 transition-all duration-300">
                 <Phone className="text-[#c5a47e]" size={24} />
               </div>
               <p className="text-sm text-gray-400 mb-2 uppercase tracking-widest">Phone</p>
-              <p className="text-lg font-semibold group-hover:text-[#c5a47e] transition-colors duration-300">
+              <p
+                className="text-lg font-semibold group-hover:text-[#c5a47e] transition-colors duration-300 cursor-pointer"
+                onClick={() => window.open(`tel:+${primaryPhone}`, '_self')}
+              >
+                +91 8123409596
+              </p>
+              <p
+                className="text-lg font-semibold group-hover:text-[#c5a47e] transition-colors duration-300 cursor-pointer"
+                onClick={() => window.open(`tel:+${secondaryPhone}`, '_self')}
+              >
                 +91 8618271718
               </p>
             </motion.div>

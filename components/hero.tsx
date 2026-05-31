@@ -38,14 +38,14 @@ export default function Hero() {
               </div>
               <div className="flex items-center gap-2">
                 <span>📱</span>
-                <a href="tel:+919876543210" className="text-primary hover:text-accent">
-                  +91 98765 43210
+                <a href="tel:+918123409596" className="text-primary hover:text-accent">
+                  +91 8123409596
                 </a>
               </div>
               <div className="flex items-center gap-2">
                 <span>📞</span>
-                <a href="tel:+919876543211" className="text-primary hover:text-accent">
-                  +91 98765 43211
+                <a href="tel:+918618271718" className="text-primary hover:text-accent">
+                  +91 8618271718
                 </a>
               </div>
             </div>
