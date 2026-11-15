@@ -180,6 +180,73 @@
   animation: backgroundPan 20s linear infinite;
 }
 
+/* Luxury Gold Shine / Shimmer Animation */
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gold-shine {
+  background: linear-gradient(
+    115deg,
+    #a88457 0%,
+    #c5a47e 20%,
+    #fef7ee 45%,
+    #ffffff 50%,
+    #fef7ee 55%,
+    #c5a47e 80%,
+    #a88457 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 4s ease-in-out infinite;
+  display: inline-block;
+  filter: drop-shadow(0 0 16px rgba(197, 164, 126, 0.45));
+}
+
+/* Gold Icon Shining Pulse */
+@keyframes goldIconPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(197, 164, 126, 0.65)) brightness(1.15) contrast(1.1);
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(245, 230, 210, 0.95)) drop-shadow(0 0 24px rgba(197, 164, 126, 0.7)) brightness(1.4) contrast(1.15);
+  }
+}
+
+.gold-icon-shine {
+  animation: goldIconPulse 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Luxury Bright Static Silver / Platinum Shine (No animation) */
+.silver-shine {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f8fafc 18%,
+    #e2e8f0 32%,
+    #ffffff 48%,
+    #ffffff 58%,
+    #e2e8f0 75%,
+    #f8fafc 88%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.7);
+  filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.55)) drop-shadow(0 4px 18px rgba(0, 0, 0, 0.95));
+  display: inline-block;
+}
+
 /* Custom styles for go.arch aesthetic */
 .text-accent-gold {
   @apply text-accent;

@@ -1,255 +1,300 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect, useCallback } from "react"
+import { motion } from "framer-motion"
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react"
-import { useState, useEffect } from "react"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel"
+
+interface TestimonialItem {
+  id: number
+  name: string
+  role: string
+  company: string
+  project?: string
+  initials: string
+  rating: number
+  text: string
+  verified: boolean
+}
+
+const TESTIMONIALS: TestimonialItem[] = [
+  {
+    id: 1,
+    name: "Priya Sharma",
+    role: "Lead Architect",
+    company: "Design Studio International",
+    project: "CORPORATE OFFICE, MUMBAI",
+    initials: "PS",
+    rating: 5,
+    verified: true,
+    text: "The marble selection from Global Apex transformed our commercial space into a masterpiece. Their attention to detail and quality control is remarkable. Highly recommended for architects working on luxury projects.",
+  },
+  {
+    id: 2,
+    name: "Rajesh Kumar",
+    role: "Project Manager",
+    company: "Foxconn Pvt Ltd.",
+    project: "PREMIUM RESIDENTIAL COMPLEX",
+    initials: "RK",
+    rating: 5,
+    verified: true,
+    text: "Global Apex provided exceptional granite for our premium residential project. The quality and finish exceeded our expectations. Their team was professional and delivered on time, making our luxury Company project a huge success.",
+  },
+  {
+    id: 3,
+    name: "Sanjay Mehta",
+    role: "CEO",
+    company: "Elite Developers",
+    project: "COMMERCIAL LANDMARKS",
+    initials: "SM",
+    rating: 5,
+    verified: true,
+    text: "The exotic granite collection helped us create unique spaces that impressed our most discerning clients. Global Apex's expertise in stone selection is unmatched in the industry.",
+  },
+  {
+    id: 4,
+    name: "Amit Patel",
+    role: "Procurement Head",
+    company: "Heritage Hotels Group",
+    project: "5-STAR HOTEL CHAIN",
+    initials: "AP",
+    rating: 5,
+    verified: true,
+    text: "We've been sourcing stones from Global Apex for 3 years across multiple hotel projects. Consistent quality, reliable delivery, and excellent customer service. They understand luxury requirements perfectly.",
+  },
+  {
+    id: 5,
+    name: "Vikram Singhania",
+    role: "Principal Designer",
+    company: "Aura Luxury Residences, Dubai",
+    project: "ULTRA-LUXURY PENTHOUSES",
+    initials: "VS",
+    rating: 5,
+    verified: true,
+    text: "The bookmatched granite slabs and precision-mitered waterfall island supplied by Global Apex are absolute showstoppers. Their ability to deliver export-grade blocks with exact vein continuity made our turnkey penthouse project truly world-class.",
+  },
+  {
+    id: 6,
+    name: "Elena Rostova",
+    role: "Chief Sourcing Director",
+    company: "Continental Façades & Resorts",
+    project: "WATERFRONT LUXURY RESORTS",
+    initials: "ER",
+    rating: 5,
+    verified: true,
+    text: "Sourcing zero-defect granite blocks directly from their proprietary quarries gave us complete peace of mind. Global Apex handled international ocean freight, ISPM-15 crating, and strict calibration flawlessly.",
+  },
+]
 
 export default function Testimonials() {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Rajesh Kumar",
-      company: "Foxconn Pvt Ltd.",
-      role: "Project Manager",
-      image: "/client1.jpg",
-      rating: 5,
-      text: "Global Apex provided exceptional granite for our premium residential project. The quality and finish exceeded our expectations. Their team was professional and delivered on time, making our luxury Company project a huge success.",
-    },
-    {
-      id: 2,
-      name: "Priya Sharma",
-      company: "Design Studio International",
-      role: "Lead Architect",
-      image: "/client2.jpg",
-      rating: 5,
-      text: "The marble selection from Global Apex transformed our commercial space into a masterpiece. Their attention to detail and quality control is remarkable. Highly recommended for architects working on luxury projects.",
-      project: "Corporate Office, Mumbai"
-    },
-    {
-      id: 3,
-      name: "Amit Patel",
-      company: "Heritage Hotels Group",
-      role: "Procurement Head",
-      image: "/client3.jpg",
-      rating: 5,
-      text: "We've been sourcing stones from Global Apex for 3 years across multiple hotel projects. Consistent quality, reliable delivery, and excellent customer service. They understand luxury requirements perfectly.",
-      project: "5-Star Hotel Chain"
-    },
-    {
-      id: 4,
-      name: "Sanjay Mehta",
-      company: "Elite Developers",
-      role: "CEO",
-      image: "/client4.jpg",
-      rating: 5,
-      text: "The exotic granite collection helped us create unique spaces that impressed our most discerning clients. Global Apex's expertise in stone selection is unmatched in the industry.",
-    },
-  ]
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+  const [count, setCount] = useState(0)
 
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [direction, setDirection] = useState(0)
+  // Sync state when carousel changes
+  const onSelect = useCallback(() => {
+    if (!api) return
+    setCurrent(api.selectedScrollSnap())
+  }, [api])
 
-  const nextTestimonial = () => {
-    setDirection(1)
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-  }
-
-  const prevTestimonial = () => {
-    setDirection(-1)
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
-  }
-
-  // Auto-slide every 8 seconds
   useEffect(() => {
+    if (!api) return
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap())
+    api.on("select", onSelect)
+    api.on("reInit", onSelect)
+
+    // Auto-advance every 3.5 seconds (3 to 4 secs)
     const interval = setInterval(() => {
-      nextTestimonial()
-    }, 8000)
-    return () => clearInterval(interval)
-  }, [])
+      api.scrollNext()
+    }, 3500)
 
-  // Star rating component
-  const StarRating = ({ rating }: { rating: number }) => {
-    return (
-      <div className="flex gap-1 mb-3 sm:mb-4 justify-center">
-        {[...Array(5)].map((_, i) => (
-          <Star
-            key={i}
-            size={16}
-            className={`${i < rating ? "text-[#c5a47e] fill-current" : "text-gray-300"} sm:w-4 sm:h-4`}
-          />
-        ))}
-      </div>
-    )
-  }
+    return () => {
+      clearInterval(interval)
+      api.off("select", onSelect)
+      api.off("reInit", onSelect)
+    }
+  }, [api, onSelect, current]) // re-creates interval on current change so manual interaction resets countdown
 
-  // Responsive slide variants
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 300 : -300,
-      opacity: 0,
-      scale: 0.9
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1
-    },
-    exit: (direction: number) => ({
-      x: direction > 0 ? -300 : 300,
-      opacity: 0,
-      scale: 0.9
-    })
-  }
+  const scrollPrev = () => api?.scrollPrev()
+  const scrollNext = () => api?.scrollNext()
+  const scrollTo = (index: number) => api?.scrollTo(index)
 
   return (
-    <section id="testimonials" className="py-12 sm:py-16 md:py-20 bg-black text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="testimonials"
+      aria-label="Client Testimonials - What Our Clients Say"
+      className="relative w-full py-16 sm:py-20 lg:py-24 bg-black text-white border-t border-b border-white/10 overflow-hidden"
+    >
+      {/* Subtle Black & Gold Ambient Background */}
+      <div
+        className="absolute inset-0 opacity-[0.035] pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(197,164,126,0.1),transparent_65%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(197,164,126,0.05),transparent_60%)] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-8 sm:mb-12 md:mb-16"
+          className="text-center mb-10 sm:mb-14"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 tracking-tight">
-            CLIENT <span className="text-[#c5a47e]">TESTIMONIALS</span>
-          </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4">
-            Discover what our valued clients say about their experience working with Global Apex
-          </p>
-          <div className="w-16 sm:w-20 h-1 bg-[#c5a47e] mx-auto"></div>
-        </motion.div>
-
-        {/* Sliding Testimonials Carousel */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevTestimonial}
-            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-10 bg-black/50 hover:bg-[#c5a47e] text-white hover:text-black w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300 border border-[#c5a47e]/30 hover:border-[#c5a47e]"
-          >
-            <ChevronLeft size={16} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
-          </button>
-
-          <button
-            onClick={nextTestimonial}
-            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-10 bg-black/50 hover:bg-[#c5a47e] text-white hover:text-black w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300 border border-[#c5a47e]/30 hover:border-[#c5a47e]"
-          >
-            <ChevronRight size={16} className="sm:w-5 sm:h-5 md:w-6 md:h-6" />
-          </button>
-
-          {/* Testimonial Slide */}
-          <div className="relative h-64 sm:h-72 md:h-80 lg:h-96">
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={currentIndex}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.6, ease: "easeOut" as const }}
-                className="absolute inset-0"
-              >
-                <div className="bg-gradient-to-br from-gray-900 to-black border border-[#c5a47e]/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 h-full flex flex-col justify-center">
-                  {/* Quote Icon */}
-                  <div className="text-center mb-3 sm:mb-4 md:mb-6">
-                    <Quote className="text-[#c5a47e]/30 mx-auto sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12" size={24} />
-                  </div>
-
-                  {/* Rating */}
-                  <StarRating rating={testimonials[currentIndex].rating} />
-
-                  {/* Testimonial Text */}
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 text-center leading-relaxed mb-4 sm:mb-6 md:mb-8 italic max-w-3xl mx-auto line-clamp-4 sm:line-clamp-5 md:line-clamp-none">
-                    "{testimonials[currentIndex].text}"
-                  </p>
-
-                  {/* Project Info */}
-                  <div className="text-center mb-4 sm:mb-6">
-                    <p className="text-[#c5a47e] text-xs sm:text-sm font-semibold uppercase tracking-wider">
-                      {testimonials[currentIndex].project}
-                    </p>
-                  </div>
-
-                  {/* Client Info */}
-                  <div className="flex items-center justify-center gap-3 sm:gap-4">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 bg-[#c5a47e]/20 rounded-full flex items-center justify-center border border-[#c5a47e]/30">
-                      <div className="text-[#c5a47e] font-bold text-sm sm:text-base md:text-lg">
-                        {testimonials[currentIndex].name.split(' ').map(n => n[0]).join('')}
-                      </div>
-                    </div>
-                    <div className="text-left">
-                      <h4 className="font-semibold text-white text-sm sm:text-base md:text-lg">{testimonials[currentIndex].name}</h4>
-                      <p className="text-gray-400 text-xs sm:text-sm">{testimonials[currentIndex].role}</p>
-                      <p className="text-[#c5a47e] text-xs sm:text-sm">{testimonials[currentIndex].company}</p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-[#c5a47e] shadow-[0_0_8px_#c5a47e]" />
+            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
+              CLIENT REVIEWS // GLOBAL APEX
+            </span>
           </div>
 
-          {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 sm:gap-3 mt-4 sm:mt-6 md:mt-8">
-            {testimonials.map((_, index) => (
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-[0.15em] uppercase text-white mb-3">
+            WHAT OUR CLIENTS <span className="text-[#c5a47e] font-normal">SAY</span>
+          </h2>
+
+          <p className="text-sm sm:text-base md:text-lg text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed">
+            Short notes from architects, developers, and hospitality leaders who build with our stone every day.
+          </p>
+        </motion.div>
+
+        {/* Carousel Container */}
+        <div className="relative">
+          <Carousel
+            setApi={setApi}
+            opts={{
+              loop: true,
+              align: "start",
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4 sm:-ml-6">
+              {TESTIMONIALS.map((t) => (
+                <CarouselItem
+                  key={t.id}
+                  className="pl-4 sm:pl-6 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/3"
+                >
+                  <div className="h-full bg-[#0d0d0e] rounded-2xl border border-white/10 p-6 sm:p-7 shadow-[0_15px_35px_rgba(0,0,0,0.85)] hover:border-[#c5a47e]/50 hover:shadow-[0_15px_40px_rgba(197,164,126,0.12)] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                    {/* Top Subtle Amber Ambient Glow */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#c5a47e]/5 blur-2xl rounded-full pointer-events-none group-hover:bg-[#c5a47e]/10 transition-colors" />
+
+                    <div className="relative z-10 flex flex-col flex-1">
+                      {/* Top: 5 Gold Stars + Quote Icon */}
+                      <div className="flex items-start justify-between gap-2 mb-3">
+                        <div className="flex items-center gap-1">
+                          {[...Array(t.rating)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-4 h-4 fill-[#c5a47e] text-[#c5a47e] drop-shadow-[0_0_4px_rgba(197,164,126,0.4)]"
+                            />
+                          ))}
+                        </div>
+                        <Quote className="w-5 h-5 text-[#c5a47e]/30 group-hover:text-[#c5a47e]/60 transition-colors flex-shrink-0" />
+                      </div>
+
+                      {/* Project Scope Tag */}
+                      {t.project && (
+                        <div className="mb-3">
+                          <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.2em] uppercase text-[#c5a47e] font-medium">
+                            {t.project}
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Review Text */}
+                      <p className="text-neutral-300 text-sm sm:text-[14.5px] leading-relaxed font-light flex-1 italic mb-6">
+                        "{t.text}"
+                      </p>
+                    </div>
+
+                    {/* Bottom: Client Details & Initials Avatar */}
+                    <div className="relative z-10 pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[#c5a47e]/15 border border-[#c5a47e]/35 flex items-center justify-center flex-shrink-0 group-hover:border-[#c5a47e] transition-colors shadow-[0_0_8px_rgba(197,164,126,0.15)]">
+                          <span className="text-xs sm:text-sm font-bold text-[#c5a47e]">
+                            {t.initials}
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-xs sm:text-[13px] tracking-wide text-white">
+                            {t.name}
+                          </h4>
+                          <p className="text-neutral-400 text-[11px] sm:text-xs">
+                            {t.role}
+                          </p>
+                          <p className="text-[#c5a47e] text-[11px] sm:text-xs font-medium">
+                            {t.company}
+                          </p>
+                        </div>
+                      </div>
+
+                      {t.verified && (
+                        <span className="text-[9px] font-mono font-semibold text-[#c5a47e] bg-[#c5a47e]/10 border border-[#c5a47e]/30 px-2 py-0.5 rounded tracking-wider uppercase shadow-[0_0_6px_rgba(197,164,126,0.1)] flex-shrink-0">
+                          VERIFIED
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+
+          {/* Slider Controls: Prev/Next Buttons and Pagination Dots */}
+          <div className="flex items-center justify-between gap-4 mt-8 sm:mt-10 pt-4">
+            {/* Number Counter */}
+            <div className="text-xs sm:text-sm font-mono tracking-widest text-neutral-400">
+              <span className="text-white font-semibold">0{current + 1}</span>
+              <span className="text-neutral-600 mx-1.5">/</span>
+              <span>0{count || TESTIMONIALS.length}</span>
+            </div>
+
+            {/* Pagination Dots */}
+            <div className="flex items-center gap-2">
+              {TESTIMONIALS.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => scrollTo(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    idx === current
+                      ? "w-8 bg-[#c5a47e] shadow-[0_0_8px_rgba(197,164,126,0.6)]"
+                      : "w-2 bg-white/20 hover:bg-white/40"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Prev / Next Buttons */}
+            <div className="flex items-center gap-2">
               <button
-                key={index}
-                onClick={() => {
-                  setDirection(index > currentIndex ? 1 : -1)
-                  setCurrentIndex(index)
-                }}
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? "bg-[#c5a47e] scale-125" : "bg-gray-600 hover:bg-gray-400"
-                }`}
-              />
-            ))}
+                onClick={scrollPrev}
+                className="w-10 h-10 rounded-full border border-white/15 bg-neutral-950/80 hover:bg-white/10 hover:border-white/30 flex items-center justify-center transition-all group"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft className="w-5 h-5 text-neutral-300 group-hover:text-white transition-colors" />
+              </button>
+              <button
+                onClick={scrollNext}
+                className="w-10 h-10 rounded-full border border-[#c5a47e]/40 bg-[#c5a47e]/10 hover:bg-[#c5a47e]/25 hover:border-[#c5a47e] flex items-center justify-center transition-all group shadow-[0_0_12px_rgba(197,164,126,0.15)]"
+                aria-label="Next testimonial"
+              >
+                <ChevronRight className="w-5 h-5 text-[#c5a47e] group-hover:text-white transition-colors" />
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-12 sm:mt-16 md:mt-20 bg-gradient-to-r from-[#c5a47e]/10 to-transparent border border-[#c5a47e]/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12"
-        >
-          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 text-center">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              className="p-2 sm:p-4"
-            >
-              <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#c5a47e] mb-1 sm:mb-2">200+</div>
-              <div className="text-gray-400 text-xs sm:text-sm uppercase tracking-wider">Projects Completed</div>
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              className="p-2 sm:p-4"
-            >
-              <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#c5a47e] mb-1 sm:mb-2">98%</div>
-              <div className="text-gray-400 text-xs sm:text-sm uppercase tracking-wider">Client Satisfaction</div>
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              className="p-2 sm:p-4"
-            >
-              <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#c5a47e] mb-1 sm:mb-2">15+</div>
-              <div className="text-gray-400 text-xs sm:text-sm uppercase tracking-wider">Years Experience</div>
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              className="p-2 sm:p-4"
-            >
-              <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#c5a47e] mb-1 sm:mb-2">10+</div>
-              <div className="text-gray-400 text-xs sm:text-sm uppercase tracking-wider">Countries Served</div>
-            </motion.div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )

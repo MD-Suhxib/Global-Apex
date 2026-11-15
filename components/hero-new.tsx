@@ -17,7 +17,7 @@ export default function HeroNew() {
       title: "Premium Granite Collection",
       description:
         "Experience the timeless elegance of our premium granite Collection. Each stone is carefully sourced and curated to ensure the highest quality for your luxury projects.",
-      image: "sample1.jpg",
+      image: "/sample1.jpg",
     },
     {
       number: "02",
@@ -25,7 +25,7 @@ export default function HeroNew() {
       title: "Exotic Marble Selection",
       description:
         "Discover our exclusive marble collection from around the world. From classic Italian marble to rare exotic stones, we bring sophistication to every space.",
-      image: "sample3.jpg",
+      image: "/sample3.jpg",
     },
     {
       number: "03",
@@ -62,25 +62,63 @@ export default function HeroNew() {
     }, 400)
   }
 
-  // Add this function to handle navigation
-  const handleHowItWorksClick = () => {
-    router.push("/work")
+  // Smooth scroll to products section
+  const handleViewProductsClick = () => {
+    const element = document.getElementById("projects")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
   }
 
   return (
-    <div className="relative min-h-screen bg-background overflow-hidden flex pt-16">
-      {/* Left Sidebar - Hidden on mobile */}
+    <div className="relative min-h-screen bg-black overflow-hidden flex pt-16">
+      {/* Full-width Background Slides - Spans across both sidebar and content */}
       <div
-        className={`hidden lg:flex w-1/3 bg-gradient-to-b from-primary/20 to-transparent flex-col justify-between p-8 xl:p-12 transition-all duration-1000 ${
+        className={`absolute inset-0 transition-all duration-1000 ${
+          hasLoaded ? "scale-100" : "scale-105"
+        }`}
+      >
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <img
+              src={slide.image || "/placeholder.svg"}
+              alt="Stone texture"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
+        {/* Seamless Blend Gradient:
+            - Left corner is deep black (like Image 2)
+            - Image emerges and is clearly visible from the left/center
+            - Right end fades away: becomes less, less, and dark
+        */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.95) 20%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.2) 42%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.78) 86%, rgba(0,0,0,0.97) 100%)",
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60 pointer-events-none"></div>
+      </div>
+
+      {/* Left Sidebar - Transparent so background seamlessly blends underneath */}
+      <div
+        className={`relative z-10 hidden lg:flex w-1/3 flex-col justify-between p-8 xl:p-12 transition-all duration-1000 ${
           hasLoaded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
         }`}
       >
         {/* Portfolio Number */}
         <div>
-          <p className="text-muted-foreground text-sm tracking-widest">
+          <p className="text-muted-foreground text-sm tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
             / {slides[currentSlide].total.padStart(2, "0")}
           </p>
-          <p className="text-6xl xl:text-7xl font-bold text-[#c5a47e] mt-2 xl:mt-4">
+          <p className="text-6xl xl:text-7xl font-bold mt-2 xl:mt-4 gold-shine">
             {slides[currentSlide].number}
           </p>
         </div>
@@ -89,7 +127,7 @@ export default function HeroNew() {
         <div className="flex items-center gap-6 xl:gap-8">
           <button
             onClick={prevSlide}
-            className="text-xs tracking-wider font-semibold text-muted-foreground hover:text-[#c5a47e] transition flex items-center gap-2"
+            className="text-xs tracking-wider font-semibold text-muted-foreground hover:text-[#c5a47e] transition flex items-center gap-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           >
             <ChevronLeft size={16} />
             PREV
@@ -97,7 +135,7 @@ export default function HeroNew() {
           <div className="w-6 xl:w-8 h-px bg-muted-foreground"></div>
           <button
             onClick={nextSlide}
-            className="text-xs tracking-wider font-semibold text-muted-foreground hover:text-[#c5a47e] transition flex items-center gap-2"
+            className="text-xs tracking-wider font-semibold text-muted-foreground hover:text-[#c5a47e] transition flex items-center gap-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           >
             NEXT
             <ChevronRight size={16} />
@@ -105,7 +143,7 @@ export default function HeroNew() {
         </div>
 
         {/* Social Icons */}
-        <div className="flex flex-col gap-4 xl:gap-6 text-[#c5a47e]">
+        <div className="flex flex-col gap-4 xl:gap-6 text-[#c5a47e] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
           <a href="https://www.instagram.com/global.apex_?igsh=MWF5d3V4NDkzaDgwaA==" className="hover:text-[#c5a47e] transition">
             <Instagram size={18} />
           </a>
@@ -119,29 +157,7 @@ export default function HeroNew() {
       </div>
 
       {/* Right Content */}
-      <div className="flex-1 flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 relative overflow-hidden">
-        <div
-          className={`absolute inset-0 opacity-60 transition-all duration-1000 ${
-            hasLoaded ? "scale-100" : "scale-110"
-          }`}
-        >
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-800 ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <img
-                src={slide.image || "/placeholder.svg"}
-                alt="Stone texture"
-                className="w-full h-full object-cover hero-bg-pan"
-              />
-            </div>
-          ))}
-          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80 lg:from-background lg:via-transparent lg:to-background"></div>
-        </div>
-
+      <div className="relative z-10 flex-1 flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 overflow-hidden">
         <div
           className={`relative z-10 max-w-2xl text-center transition-all duration-1000 w-full ${
             hasLoaded && !isTransitioning
@@ -149,21 +165,24 @@ export default function HeroNew() {
               : "opacity-0 translate-y-8"
           }`}
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-foreground mb-6 md:mb-8 leading-tight tracking-[0.2em] sm:tracking-[0.3em] uppercase px-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-6 md:mb-8 leading-tight tracking-[0.2em] sm:tracking-[0.3em] uppercase px-4 silver-shine drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]">
             {slides[currentSlide].title}
           </h1>
 
-          <p className="text-sm sm:text-base lg:text-lg text-foreground/90 mb-8 md:mb-12 leading-relaxed font-medium tracking-wide px-4 sm:px-6 md:px-8">
+          <p className="text-sm sm:text-base lg:text-lg text-white/95 mb-8 md:mb-12 leading-relaxed font-medium tracking-wide px-4 sm:px-6 md:px-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
             {slides[currentSlide].description}
           </p>
 
-          {/* HOW IT WORKS Button - Updated with onClick handler */}
+          {/* VIEW PRODUCTS Button - Scrolls to products section */}
           <button 
-            onClick={handleHowItWorksClick}
-            className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-[#c5a47e] text-black text-xs sm:text-sm tracking-[0.2em] font-medium hover:bg-[#b8966d] transition uppercase flex items-center gap-2 sm:gap-3 mx-auto rounded-full"
+            onClick={handleViewProductsClick}
+            className="group relative overflow-hidden px-6 sm:px-8 md:px-10 py-3 sm:py-4 bg-gradient-to-r from-[#b8966d] via-[#d6b793] to-[#b8966d] text-black text-xs sm:text-sm tracking-[0.2em] font-semibold hover:brightness-110 transition uppercase flex items-center gap-2 sm:gap-3 mx-auto rounded-full shadow-[0_0_20px_rgba(197,164,126,0.35)] hover:shadow-[0_0_30px_rgba(197,164,126,0.6)] cursor-pointer"
           >
-            How it Works
-            <ChevronRight size={16} className="sm:w-4 sm:h-4" />
+            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
+            <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+              View Products
+              <ChevronRight size={16} className="sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
+            </span>
           </button>
         </div>
       </div>
@@ -180,8 +199,8 @@ export default function HeroNew() {
         
         {/* Mobile slide indicator */}
         <div className="flex items-center gap-4">
-          <span className="text-xs tracking-widest text-muted-foreground">
-            {slides[currentSlide].number} / {slides[currentSlide].total}
+          <span className="text-xs tracking-widest text-muted-foreground flex items-center gap-1.5">
+            <span className="gold-shine font-bold text-sm">{slides[currentSlide].number}</span> / {slides[currentSlide].total}
           </span>
           
           {/* Mobile social icons - horizontal */}
