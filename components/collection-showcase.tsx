@@ -137,23 +137,23 @@ export default function CollectionShowcase() {
 
   const slideVariants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? 80 : -80,
+      x: dir > 0 ? 30 : -30,
       opacity: 0,
     }),
     center: {
       x: 0,
       opacity: 1,
       transition: {
-        x: { type: "spring" as const, stiffness: 260, damping: 28 },
-        opacity: { duration: 0.45 },
+        x: { type: "spring" as const, stiffness: 280, damping: 30 },
+        opacity: { duration: 0.4 },
       },
     },
     exit: (dir: number) => ({
-      x: dir > 0 ? -80 : 80,
+      x: dir > 0 ? -30 : 30,
       opacity: 0,
       transition: {
-        x: { type: "spring" as const, stiffness: 260, damping: 28 },
-        opacity: { duration: 0.35 },
+        x: { type: "spring" as const, stiffness: 280, damping: 30 },
+        opacity: { duration: 0.3 },
       },
     }),
   }
@@ -162,41 +162,41 @@ export default function CollectionShowcase() {
     <section
       id="about"
       aria-label="About Global Apex - Granite Mining and Stone Excellence"
-      className="relative w-full bg-black text-white py-14 sm:py-18 lg:py-20 overflow-hidden border-t border-b border-white/10 scroll-mt-20"
+      className="relative w-full max-w-full bg-black text-white py-12 sm:py-16 lg:py-20 overflow-x-hidden border-t border-b border-white/10 scroll-mt-20"
     >
       {/* Background Ambience */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(197,164,126,0.08),transparent_60%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(255,255,255,0.03),transparent_70%)] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
         {/* Top Header Bar */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10 pb-6 border-b border-white/10">
-          <div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-6 mb-6 sm:mb-10 pb-5 sm:pb-6 border-b border-white/10">
+          <div className="min-w-0">
             <div className="flex items-center gap-2 mb-2">
-              <span className="inline-block w-2 h-2 rounded-full bg-[#c5a47e] shadow-[0_0_8px_#c5a47e]" />
-              <span className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-[#c5a47e] font-medium">
+              <span className="inline-block w-2 h-2 rounded-full bg-[#c5a47e] shadow-[0_0_8px_#c5a47e] flex-shrink-0" />
+              <span className="text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#c5a47e] font-medium truncate">
                 NATURAL STONE EXCELLENCE // GLOBAL APEX
               </span>
             </div>
-            <div className="flex items-baseline gap-4 flex-wrap">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-[0.2em] uppercase text-white">
+            <div className="flex items-baseline gap-3 sm:gap-4 flex-wrap">
+              <h2 className="text-xl sm:text-3xl md:text-4xl font-light tracking-[0.15em] sm:tracking-[0.2em] uppercase text-white break-words">
                 {slide.collection}
               </h2>
-              <span className="text-xs sm:text-sm tracking-widest font-mono text-white/50 px-2.5 py-0.5 rounded border border-white/15 bg-white/5">
+              <span className="text-[11px] sm:text-xs font-mono text-white/60 px-2 py-0.5 rounded border border-white/15 bg-white/5 flex-shrink-0">
                 {slide.code}
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-neutral-400 tracking-wider uppercase mt-1">
+            <p className="text-xs sm:text-sm text-neutral-400 tracking-wider uppercase mt-1 break-words">
               {slide.subtitle}
             </p>
           </div>
 
           {/* Slider Controls */}
-          <div className="flex items-center gap-4 sm:gap-6 self-start md:self-end">
+          <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6 w-full md:w-auto pt-2 md:pt-0">
             {/* Number Indicator */}
             <div className="text-xs sm:text-sm font-mono tracking-widest text-neutral-400">
               <span className="text-white font-semibold">0{currentIndex + 1}</span>
-              <span className="text-neutral-600 mx-1.5">/</span>
+              <span className="text-neutral-600 mx-1">/</span>
               <span>0{SLIDES.length}</span>
             </div>
 
@@ -206,10 +206,11 @@ export default function CollectionShowcase() {
                 <button
                   key={s.id}
                   onClick={() => goToSlide(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentIndex
-                      ? "w-8 bg-[#c5a47e] shadow-[0_0_8px_rgba(197,164,126,0.6)]"
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    idx === currentIndex
+                      ? "w-6 sm:w-8 bg-[#c5a47e] shadow-[0_0_8px_rgba(197,164,126,0.6)]"
                       : "w-2 bg-white/20 hover:bg-white/40"
-                    }`}
+                  }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
               ))}
@@ -219,24 +220,24 @@ export default function CollectionShowcase() {
             <div className="flex items-center gap-2">
               <button
                 onClick={prevSlide}
-                className="w-10 h-10 rounded-full border border-white/15 bg-neutral-950/80 hover:bg-white/10 hover:border-white/30 flex items-center justify-center transition-all group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/15 bg-neutral-950/80 hover:bg-white/10 hover:border-white/30 flex items-center justify-center transition-all group flex-shrink-0"
                 aria-label="Previous slide"
               >
-                <ChevronLeft className="w-5 h-5 text-neutral-300 group-hover:text-white transition-colors" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-300 group-hover:text-white transition-colors" />
               </button>
               <button
                 onClick={nextSlide}
-                className="w-10 h-10 rounded-full border border-[#c5a47e]/40 bg-[#c5a47e]/10 hover:bg-[#c5a47e]/25 hover:border-[#c5a47e] flex items-center justify-center transition-all group shadow-[0_0_12px_rgba(197,164,126,0.15)]"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#c5a47e]/40 bg-[#c5a47e]/10 hover:bg-[#c5a47e]/25 hover:border-[#c5a47e] flex items-center justify-center transition-all group shadow-[0_0_12px_rgba(197,164,126,0.15)] flex-shrink-0"
                 aria-label="Next slide"
               >
-                <ChevronRight className="w-5 h-5 text-[#c5a47e] group-hover:text-white transition-colors" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#c5a47e] group-hover:text-white transition-colors" />
               </button>
             </div>
           </div>
         </div>
 
         {/* Main Architectural Board Container */}
-        <div className="relative bg-[#0d0d0e] border border-white/10 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden">
+        <div className="relative bg-[#0d0d0e] border border-white/10 rounded-xl sm:rounded-2xl p-3 sm:p-5 lg:p-8 shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden w-full max-w-full">
           {/* Subtle Grid Canvas Background */}
           <div
             className="absolute inset-0 opacity-[0.035] pointer-events-none"
@@ -256,15 +257,15 @@ export default function CollectionShowcase() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch"
+              className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch w-full max-w-full"
             >
               {/* Left Column: Vertical Brand Watermark + Main Image (approx 7 cols) */}
-              <div className="lg:col-span-7 flex flex-col justify-between relative">
-                <div className="relative rounded-xl overflow-hidden border border-white/10 bg-black aspect-[16/11] sm:aspect-[16/10] shadow-2xl group">
+              <div className="lg:col-span-7 flex flex-col justify-between relative w-full min-w-0">
+                <div className="relative rounded-lg sm:rounded-xl overflow-hidden border border-white/10 bg-black aspect-[16/11] sm:aspect-[16/10] shadow-2xl group w-full">
                   {/* Vertical Brand Watermark on Left side */}
-                  <div className="absolute left-0 top-0 bottom-0 z-20 w-12 sm:w-16 bg-gradient-to-r from-black/85 via-black/40 to-transparent flex flex-col justify-end items-center pb-6 pointer-events-none">
-                    <div className="flex items-center gap-3 -rotate-90 origin-center translate-y-[-24px] sm:translate-y-[-32px]">
-                      <div className="w-4 h-4 relative flex-shrink-0">
+                  <div className="absolute left-0 top-0 bottom-0 z-20 w-10 sm:w-16 bg-gradient-to-r from-black/85 via-black/40 to-transparent flex flex-col justify-end items-center pb-4 sm:pb-6 pointer-events-none">
+                    <div className="flex items-center gap-2 sm:gap-3 -rotate-90 origin-center translate-y-[-20px] sm:translate-y-[-32px]">
+                      <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 relative flex-shrink-0">
                         <Image
                           src="/emblem-gold.png"
                           alt="Global Apex Emblem"
@@ -272,7 +273,7 @@ export default function CollectionShowcase() {
                           className="object-contain"
                         />
                       </div>
-                      <span className="text-[11px] sm:text-xs font-semibold tracking-[0.35em] text-white/90 uppercase whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                      <span className="text-[10px] sm:text-xs font-semibold tracking-[0.3em] sm:tracking-[0.35em] text-white/90 uppercase whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                         GLOBAL APEX
                       </span>
                     </div>
@@ -297,44 +298,44 @@ export default function CollectionShowcase() {
               </div>
 
               {/* Right Column: Clean Editorial Content & Stats */}
-              <div className="lg:col-span-5 flex flex-col justify-between rounded-xl bg-neutral-900/80 border border-white/10 p-6 sm:p-7 backdrop-blur-md shadow-xl relative overflow-hidden">
+              <div className="lg:col-span-5 flex flex-col justify-between rounded-xl bg-neutral-900/80 border border-white/10 p-4 sm:p-6 lg:p-7 backdrop-blur-md shadow-xl relative overflow-hidden w-full min-w-0">
                 {/* Top Subtle Amber Glow */}
                 <div className="absolute top-0 right-0 w-36 h-36 bg-[#c5a47e]/10 blur-3xl rounded-full pointer-events-none" />
 
-                <div className="flex flex-col justify-center flex-1">
+                <div className="flex flex-col justify-center flex-1 min-w-0">
                   {/* Category / Scope Tag */}
-                  <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
-                    <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.25em] uppercase text-[#c5a47e] font-semibold flex items-center gap-1.5">
-                      <Mountain className="w-3.5 h-3.5" />
-                      {slide.tag}
+                  <div className="flex items-center justify-between mb-3 sm:mb-4 border-b border-white/10 pb-2.5 sm:pb-3 gap-2 min-w-0">
+                    <span className="text-[9px] sm:text-[11px] font-mono tracking-wider sm:tracking-[0.2em] uppercase text-[#c5a47e] font-semibold flex items-center gap-1.5 min-w-0 truncate">
+                      <Mountain className="w-3.5 h-3.5 flex-shrink-0" />
+                      <span className="truncate">{slide.tag}</span>
                     </span>
-                    <span className="text-[10px] font-mono text-neutral-400 border border-white/15 px-2.5 py-0.5 rounded bg-white/5">
+                    <span className="text-[9px] sm:text-[10px] font-mono text-neutral-400 border border-white/15 px-2 py-0.5 rounded bg-white/5 flex-shrink-0">
                       {slide.code}
                     </span>
                   </div>
 
                   {/* Lead Headline */}
-                  <h3 className="text-xl sm:text-2xl font-light tracking-wide text-white mb-4 leading-snug">
+                  <h3 className="text-base sm:text-xl md:text-2xl font-light tracking-wide text-white mb-2.5 sm:mb-4 leading-snug break-words">
                     {slide.lead}
                   </h3>
 
                   {/* Description Paragraph */}
-                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-light mb-6">
+                  <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-light mb-4 sm:mb-6 break-words">
                     {slide.description}
                   </p>
                 </div>
 
                 {/* Bottom Metrics Bar */}
-                <div className="pt-5 border-t border-white/10 grid grid-cols-3 gap-3">
+                <div className="pt-3 sm:pt-5 border-t border-white/10 grid grid-cols-3 gap-1.5 sm:gap-3 w-full min-w-0">
                   {slide.metrics.map((m, i) => (
                     <div
                       key={i}
-                      className="p-2.5 rounded-lg bg-black/50 border border-white/10 text-center hover:border-[#c5a47e]/30 transition-colors"
+                      className="p-1.5 sm:p-2.5 rounded-lg bg-black/60 border border-white/10 text-center hover:border-[#c5a47e]/30 transition-colors min-w-0 flex flex-col justify-center overflow-hidden"
                     >
-                      <div className="text-xs sm:text-sm font-semibold text-[#c5a47e] font-mono">
+                      <div className="text-[11px] sm:text-xs md:text-sm font-semibold text-[#c5a47e] font-mono leading-tight truncate px-0.5">
                         {m.value}
                       </div>
-                      <div className="text-[9px] uppercase tracking-wider text-neutral-400 mt-1 font-mono">
+                      <div className="text-[7.5px] sm:text-[9px] uppercase tracking-normal sm:tracking-wider text-neutral-400 mt-0.5 sm:mt-1 font-mono leading-tight line-clamp-2 px-0.5">
                         {m.label}
                       </div>
                     </div>

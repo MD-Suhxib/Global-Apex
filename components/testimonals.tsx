@@ -130,7 +130,7 @@ export default function Testimonials() {
     <section
       id="testimonials"
       aria-label="Client Testimonials - What Our Clients Say"
-      className="relative w-full py-16 sm:py-20 lg:py-24 bg-black text-white border-t border-b border-white/10 overflow-hidden"
+      className="relative w-full max-w-full py-12 sm:py-18 lg:py-24 bg-black text-white border-t border-b border-white/10 overflow-x-hidden"
     >
       {/* Subtle Black & Gold Ambient Background */}
       <div
@@ -144,33 +144,33 @@ export default function Testimonials() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(197,164,126,0.1),transparent_65%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(197,164,126,0.05),transparent_60%)] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-10 sm:mb-14"
+          className="text-center mb-8 sm:mb-14"
         >
           <div className="flex items-center justify-center gap-2 mb-2">
             <span className="inline-block w-2 h-2 rounded-full bg-[#c5a47e] shadow-[0_0_8px_#c5a47e]" />
-            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.3em] text-[#c5a47e] uppercase">
+            <span className="text-[10px] sm:text-xs font-semibold tracking-[0.25em] sm:tracking-[0.3em] text-[#c5a47e] uppercase">
               CLIENT REVIEWS // GLOBAL APEX
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-[0.15em] uppercase text-white mb-3">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-light tracking-[0.12em] sm:tracking-[0.15em] uppercase text-white mb-2.5 sm:mb-3 break-words">
             WHAT OUR CLIENTS <span className="text-[#c5a47e] font-normal">SAY</span>
           </h2>
 
-          <p className="text-sm sm:text-base md:text-lg text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-xs sm:text-base md:text-lg text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed px-1">
             Short notes from architects, developers, and hospitality leaders who build with our stone every day.
           </p>
         </motion.div>
 
         {/* Carousel Container */}
-        <div className="relative">
+        <div className="relative w-full">
           <Carousel
             setApi={setApi}
             opts={{
@@ -179,68 +179,68 @@ export default function Testimonials() {
             }}
             className="w-full"
           >
-            <CarouselContent className="-ml-4 sm:-ml-6">
+            <CarouselContent className="-ml-3 sm:-ml-6">
               {TESTIMONIALS.map((t) => (
                 <CarouselItem
                   key={t.id}
-                  className="pl-4 sm:pl-6 basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/3"
+                  className="pl-3 sm:pl-6 basis-full sm:basis-1/2 lg:basis-1/3 min-w-0"
                 >
-                  <div className="h-full bg-[#0d0d0e] rounded-2xl border border-white/10 p-6 sm:p-7 shadow-[0_15px_35px_rgba(0,0,0,0.85)] hover:border-[#c5a47e]/50 hover:shadow-[0_15px_40px_rgba(197,164,126,0.12)] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+                  <div className="h-full bg-[#0d0d0e] rounded-xl sm:rounded-2xl border border-white/10 p-4 sm:p-6 lg:p-7 shadow-[0_15px_35px_rgba(0,0,0,0.85)] hover:border-[#c5a47e]/50 hover:shadow-[0_15px_40px_rgba(197,164,126,0.12)] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden min-w-0">
                     {/* Top Subtle Amber Ambient Glow */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#c5a47e]/5 blur-2xl rounded-full pointer-events-none group-hover:bg-[#c5a47e]/10 transition-colors" />
 
-                    <div className="relative z-10 flex flex-col flex-1">
+                    <div className="relative z-10 flex flex-col flex-1 min-w-0">
                       {/* Top: 5 Gold Stars + Quote Icon */}
                       <div className="flex items-start justify-between gap-2 mb-3">
                         <div className="flex items-center gap-1">
                           {[...Array(t.rating)].map((_, i) => (
                             <Star
                               key={i}
-                              className="w-4 h-4 fill-[#c5a47e] text-[#c5a47e] drop-shadow-[0_0_4px_rgba(197,164,126,0.4)]"
+                              className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[#c5a47e] text-[#c5a47e] drop-shadow-[0_0_4px_rgba(197,164,126,0.4)]"
                             />
                           ))}
                         </div>
-                        <Quote className="w-5 h-5 text-[#c5a47e]/30 group-hover:text-[#c5a47e]/60 transition-colors flex-shrink-0" />
+                        <Quote className="w-4 h-4 sm:w-5 sm:h-5 text-[#c5a47e]/30 group-hover:text-[#c5a47e]/60 transition-colors flex-shrink-0" />
                       </div>
 
                       {/* Project Scope Tag */}
                       {t.project && (
-                        <div className="mb-3">
-                          <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.2em] uppercase text-[#c5a47e] font-medium">
+                        <div className="mb-2.5 sm:mb-3">
+                          <span className="text-[9.5px] sm:text-[11px] font-mono tracking-[0.18em] uppercase text-[#c5a47e] font-medium break-words">
                             {t.project}
                           </span>
                         </div>
                       )}
 
                       {/* Review Text */}
-                      <p className="text-neutral-300 text-sm sm:text-[14.5px] leading-relaxed font-light flex-1 italic mb-6">
+                      <p className="text-neutral-300 text-xs sm:text-[14.5px] leading-relaxed font-light flex-1 italic mb-5 sm:mb-6 break-words">
                         "{t.text}"
                       </p>
                     </div>
 
                     {/* Bottom: Client Details & Initials Avatar */}
-                    <div className="relative z-10 pt-4 border-t border-white/10 flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-[#c5a47e]/15 border border-[#c5a47e]/35 flex items-center justify-center flex-shrink-0 group-hover:border-[#c5a47e] transition-colors shadow-[0_0_8px_rgba(197,164,126,0.15)]">
+                    <div className="relative z-10 pt-3.5 sm:pt-4 border-t border-white/10 flex items-center justify-between gap-2.5 sm:gap-3 min-w-0">
+                      <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#c5a47e]/15 border border-[#c5a47e]/35 flex items-center justify-center flex-shrink-0 group-hover:border-[#c5a47e] transition-colors shadow-[0_0_8px_rgba(197,164,126,0.15)]">
                           <span className="text-xs sm:text-sm font-bold text-[#c5a47e]">
                             {t.initials}
                           </span>
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-xs sm:text-[13px] tracking-wide text-white">
+                        <div className="min-w-0">
+                          <h4 className="font-semibold text-xs sm:text-[13px] tracking-wide text-white truncate">
                             {t.name}
                           </h4>
-                          <p className="text-neutral-400 text-[11px] sm:text-xs">
+                          <p className="text-neutral-400 text-[10px] sm:text-xs truncate">
                             {t.role}
                           </p>
-                          <p className="text-[#c5a47e] text-[11px] sm:text-xs font-medium">
+                          <p className="text-[#c5a47e] text-[10px] sm:text-xs font-medium truncate">
                             {t.company}
                           </p>
                         </div>
                       </div>
 
                       {t.verified && (
-                        <span className="text-[9px] font-mono font-semibold text-[#c5a47e] bg-[#c5a47e]/10 border border-[#c5a47e]/30 px-2 py-0.5 rounded tracking-wider uppercase shadow-[0_0_6px_rgba(197,164,126,0.1)] flex-shrink-0">
+                        <span className="text-[8.5px] sm:text-[9px] font-mono font-semibold text-[#c5a47e] bg-[#c5a47e]/10 border border-[#c5a47e]/30 px-1.5 sm:px-2 py-0.5 rounded tracking-wider uppercase shadow-[0_0_6px_rgba(197,164,126,0.1)] flex-shrink-0">
                           VERIFIED
                         </span>
                       )}
@@ -252,24 +252,24 @@ export default function Testimonials() {
           </Carousel>
 
           {/* Slider Controls: Prev/Next Buttons and Pagination Dots */}
-          <div className="flex items-center justify-between gap-4 mt-8 sm:mt-10 pt-4">
+          <div className="flex items-center justify-between gap-3 mt-6 sm:mt-10 pt-2 sm:pt-4">
             {/* Number Counter */}
             <div className="text-xs sm:text-sm font-mono tracking-widest text-neutral-400">
               <span className="text-white font-semibold">0{current + 1}</span>
-              <span className="text-neutral-600 mx-1.5">/</span>
+              <span className="text-neutral-600 mx-1">/</span>
               <span>0{count || TESTIMONIALS.length}</span>
             </div>
 
             {/* Pagination Dots */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {TESTIMONIALS.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => scrollTo(idx)}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     idx === current
-                      ? "w-8 bg-[#c5a47e] shadow-[0_0_8px_rgba(197,164,126,0.6)]"
-                      : "w-2 bg-white/20 hover:bg-white/40"
+                      ? "w-6 sm:w-8 bg-[#c5a47e] shadow-[0_0_8px_rgba(197,164,126,0.6)]"
+                      : "w-1.5 sm:w-2 bg-white/20 hover:bg-white/40"
                   }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
@@ -280,17 +280,17 @@ export default function Testimonials() {
             <div className="flex items-center gap-2">
               <button
                 onClick={scrollPrev}
-                className="w-10 h-10 rounded-full border border-white/15 bg-neutral-950/80 hover:bg-white/10 hover:border-white/30 flex items-center justify-center transition-all group"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/15 bg-neutral-950/80 hover:bg-white/10 hover:border-white/30 flex items-center justify-center transition-all group flex-shrink-0"
                 aria-label="Previous testimonial"
               >
-                <ChevronLeft className="w-5 h-5 text-neutral-300 group-hover:text-white transition-colors" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-neutral-300 group-hover:text-white transition-colors" />
               </button>
               <button
                 onClick={scrollNext}
-                className="w-10 h-10 rounded-full border border-[#c5a47e]/40 bg-[#c5a47e]/10 hover:bg-[#c5a47e]/25 hover:border-[#c5a47e] flex items-center justify-center transition-all group shadow-[0_0_12px_rgba(197,164,126,0.15)]"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#c5a47e]/40 bg-[#c5a47e]/10 hover:bg-[#c5a47e]/25 hover:border-[#c5a47e] flex items-center justify-center transition-all group shadow-[0_0_12px_rgba(197,164,126,0.15)] flex-shrink-0"
                 aria-label="Next testimonial"
               >
-                <ChevronRight className="w-5 h-5 text-[#c5a47e] group-hover:text-white transition-colors" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#c5a47e] group-hover:text-white transition-colors" />
               </button>
             </div>
           </div>
